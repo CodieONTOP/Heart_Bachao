@@ -1,0 +1,199 @@
+{
+  "trained_at": "2026-11-02T07:10:29.468396+00:00",
+  "dataset": {
+    "rows": 319795,
+    "columns": 18,
+    "positives": 27373,
+    "prevalence": 0.08559545959130067,
+    "duplicate_rows": 18078,
+    "missing_cells": 0,
+    "source": "https://zenodo.org/records/15364962/files/heart_2020_cleaned.csv",
+    "checksum_md5": "f5a885ff39a113e797af67367b6bc2cf",
+    "target": "HeartDisease"
+  },
+  "split": {
+    "train": {
+      "n": 223856,
+      "prevalence": 0.0855952040597527
+    },
+    "validation": {
+      "n": 47969,
+      "prevalence": 0.08559694802893536
+    },
+    "test": {
+      "n": 47970,
+      "prevalence": 0.08559516364394414
+    }
+  },
+  "versions": {
+    "python": "3.14.5",
+    "numpy": "2.5.2",
+    "pandas": "3.0.5",
+    "scikit_learn": "1.9.0",
+    "shap": "0.54.1"
+  },
+  "feature_sets": {
+    "early": 11,
+    "full": 17
+  },
+  "models": {
+    "early": {
+      "threshold": 0.10469314079422383,
+      "selected_params": {
+        "early_stopping": true,
+        "validation_fraction": 0.1,
+        "n_iter_no_change": 20,
+        "class_weight": "balanced",
+        "random_state": 42,
+        "learning_rate": 0.05,
+        "max_iter": 300,
+        "max_leaf_nodes": 31,
+        "min_samples_leaf": 50,
+        "l2_regularization": 1.0
+      },
+      "test_pr_auc": 0.30020494217404226,
+      "test_roc_auc": 0.8295785543217805,
+      "test_sensitivity": 0.7693619094008768,
+      "test_specificity": 0.7398550063833668
+    },
+    "full": {
+      "threshold": 0.10526315789473684,
+      "selected_params": {
+        "early_stopping": true,
+        "validation_fraction": 0.1,
+        "n_iter_no_change": 20,
+        "class_weight": "balanced",
+        "random_state": 42,
+        "learning_rate": 0.05,
+        "max_iter": 300,
+        "max_leaf_nodes": 31,
+        "min_samples_leaf": 50,
+        "l2_regularization": 1.0
+      },
+      "test_pr_auc": 0.337027507716855,
+      "test_roc_auc": 0.8413553768549452,
+      "test_sensitivity": 0.770823185582075,
+      "test_specificity": 0.7550610979390845
+    }
+  },
+  "early_vs_full": {
+    "roc_auc": {
+      "metric": "roc_auc",
+      "delta": 0.0117768225331647,
+      "lower": 0.009167157958310093,
+      "upper": 0.01417162376145044
+    },
+    "pr_auc": {
+      "metric": "pr_auc",
+      "delta": 0.03682256554281277,
+      "lower": 0.02746141252492685,
+      "upper": 0.045337239783057946
+    }
+  },
+  "shap_importance": {
+    "early": [
+      {
+        "feature": "AgeCategory",
+        "label": "Age group",
+        "mean_abs_shap": 1.014278452353184
+      },
+      {
+        "feature": "GenHealth",
+        "label": "General health",
+        "mean_abs_shap": 0.5502997926787605
+      },
+      {
+        "feature": "Sex_Female",
+        "label": "Sex: Female",
+        "mean_abs_shap": 0.2396735879031752
+      },
+      {
+        "feature": "Smoking",
+        "label": "Smoking history",
+        "mean_abs_shap": 0.18559858372616805
+      },
+      {
+        "feature": "BMI",
+        "label": "Body mass index",
+        "mean_abs_shap": 0.11319750946366264
+      },
+      {
+        "feature": "PhysicalHealth",
+        "label": "Poor physical-health days",
+        "mean_abs_shap": 0.109963950760942
+      },
+      {
+        "feature": "SleepTime",
+        "label": "Sleep hours",
+        "mean_abs_shap": 0.07401911306166002
+      },
+      {
+        "feature": "Sex_Male",
+        "label": "Sex: Male",
+        "mean_abs_shap": 0.052170690176238946
+      },
+      {
+        "feature": "MentalHealth",
+        "label": "Poor mental-health days",
+        "mean_abs_shap": 0.02660903146724106
+      },
+      {
+        "feature": "AlcoholDrinking",
+        "label": "Heavy alcohol use",
+        "mean_abs_shap": 0.02622342011708704
+      }
+    ],
+    "full": [
+      {
+        "feature": "AgeCategory",
+        "label": "Age group",
+        "mean_abs_shap": 0.9445126304450047
+      },
+      {
+        "feature": "GenHealth",
+        "label": "General health",
+        "mean_abs_shap": 0.4674807518730399
+      },
+      {
+        "feature": "Sex_Female",
+        "label": "Sex: Female",
+        "mean_abs_shap": 0.24495180262427677
+      },
+      {
+        "feature": "Smoking",
+        "label": "Smoking history",
+        "mean_abs_shap": 0.1795712841775387
+      },
+      {
+        "feature": "Diabetic_Yes",
+        "label": "Diabetes: Yes",
+        "mean_abs_shap": 0.09345733547601352
+      },
+      {
+        "feature": "Stroke",
+        "label": "Stroke history",
+        "mean_abs_shap": 0.08752495891097169
+      },
+      {
+        "feature": "DiffWalking",
+        "label": "Difficulty walking",
+        "mean_abs_shap": 0.08640625894453394
+      },
+      {
+        "feature": "BMI",
+        "label": "Body mass index",
+        "mean_abs_shap": 0.07428186910672512
+      },
+      {
+        "feature": "PhysicalHealth",
+        "label": "Poor physical-health days",
+        "mean_abs_shap": 0.06341925839842433
+      },
+      {
+        "feature": "Asthma",
+        "label": "Asthma",
+        "mean_abs_shap": 0.05926913691923147
+      }
+    ]
+  }
+}

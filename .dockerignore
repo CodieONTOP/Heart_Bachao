@@ -1,0 +1,16 @@
+.git
+.github
+.venv
+__pycache__
+*.pyc
+*.pyo
+*.log
+.pytest_cache
+.ruff_cache
+.ipynb_checkpoints
+data/raw
+data/processed
+models_quick
+reports_quick
+notebooks
+.streamlit/secrets.toml

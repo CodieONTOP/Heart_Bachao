@@ -1,0 +1,27 @@
+feature,label,mean_abs_shap
+AgeCategory,Age group,0.9445126304450047
+GenHealth,General health,0.4674807518730399
+Sex_Female,Sex: Female,0.24495180262427677
+Smoking,Smoking history,0.1795712841775387
+Diabetic_Yes,Diabetes: Yes,0.09345733547601352
+Stroke,Stroke history,0.08752495891097169
+DiffWalking,Difficulty walking,0.08640625894453394
+BMI,Body mass index,0.07428186910672512
+PhysicalHealth,Poor physical-health days,0.06341925839842433
+Asthma,Asthma,0.05926913691923147
+SleepTime,Sleep hours,0.05222349008889121
+Sex_Male,Sex: Male,0.05048676086810452
+KidneyDisease,Kidney disease,0.04397842157976153
+Diabetic_No,Diabetes: No,0.03199225621257401
+Race_White,Race: White,0.02028149775441094
+AlcoholDrinking,Heavy alcohol use,0.0190297294508452
+MentalHealth,Poor mental-health days,0.015485904635779419
+Race_Black,Race: Black,0.012373312173986463
+SkinCancer,Skin cancer,0.009963029714264543
+Race_Hispanic,Race: Hispanic,0.006094939848128895
+PhysicalActivity,Physical activity,0.0036501709551837336
+Race_Asian,Race: Asian,0.00349468626687965
+Race_Other,Race: Other,0.002069622320892735
+Race_American Indian/Alaskan Native,Race: American Indian/Alaskan Native,0.0012343980598316848
+Diabetic_Yes (during pregnancy),Diabetes: Yes (during pregnancy),0.001202456197513527
+"Diabetic_No, borderline diabetes","Diabetes: No, borderline diabetes",0.00032392020325152027

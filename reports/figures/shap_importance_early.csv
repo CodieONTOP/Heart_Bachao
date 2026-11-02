@@ -1,0 +1,18 @@
+feature,label,mean_abs_shap
+AgeCategory,Age group,1.014278452353184
+GenHealth,General health,0.5502997926787605
+Sex_Female,Sex: Female,0.2396735879031752
+Smoking,Smoking history,0.18559858372616805
+BMI,Body mass index,0.11319750946366264
+PhysicalHealth,Poor physical-health days,0.109963950760942
+SleepTime,Sleep hours,0.07401911306166002
+Sex_Male,Sex: Male,0.052170690176238946
+MentalHealth,Poor mental-health days,0.02660903146724106
+AlcoholDrinking,Heavy alcohol use,0.02622342011708704
+Race_White,Race: White,0.021943815855930224
+Race_Black,Race: Black,0.00957180543957911
+PhysicalActivity,Physical activity,0.0079382153431497
+Race_Hispanic,Race: Hispanic,0.006266851208468278
+Race_Asian,Race: Asian,0.005614354726638814
+Race_Other,Race: Other,0.003897192426768455
+Race_American Indian/Alaskan Native,Race: American Indian/Alaskan Native,0.0022216067421615155

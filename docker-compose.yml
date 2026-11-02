@@ -1,0 +1,7 @@
+services:
+  heart-risk:
+    build: .
+    image: project-heart:latest
+    ports:
+      - "8501:8501"
+    restart: unless-stopped
