@@ -209,7 +209,7 @@ LICENSE                     MIT license for the project code
 
 ## Citation and license
 
-**Code:** MIT License, copyright 2026 Project Heart contributors. See [`LICENSE`](LICENSE).
+**Code:** MIT License, copyright 2026 CodieBroke. See [`LICENSE`](LICENSE).
 
 **Data:** CDC BRFSS 2020, cleaned extract,
 [Zenodo 15364962](https://doi.org/10.5281/zenodo.15364962), CC BY 4.0. The dataset license is
