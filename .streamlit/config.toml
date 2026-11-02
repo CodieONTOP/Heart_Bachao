@@ -1,10 +1,23 @@
 [theme]
-base = "light"
 primaryColor = "#0F766E"
+font = "sans serif"
+baseRadius = "8px"
+
+[theme.light]
 backgroundColor = "#FFFFFF"
 secondaryBackgroundColor = "#F1F5F9"
 textColor = "#0F172A"
-font = "sans serif"
+linkColor = "#0F766E"
+borderColor = "#E2E8F0"
+chartCategoricalColors = ["#0F766E", "#7C3AED", "#B91C1C", "#B45309", "#0369A1", "#64748B"]
+
+[theme.dark]
+backgroundColor = "#0B1220"
+secondaryBackgroundColor = "#111C2E"
+textColor = "#E2E8F0"
+linkColor = "#5EEAD4"
+borderColor = "#243245"
+chartCategoricalColors = ["#2DD4BF", "#A78BFA", "#F87171", "#FBBF24", "#38BDF8", "#94A3B8"]
 
 [server]
 headless = true

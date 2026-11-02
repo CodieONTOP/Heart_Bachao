@@ -5,7 +5,7 @@ import plotly.graph_objects as go
 import streamlit as st
 
 from heartrisk import config
-from heartrisk.app_support import artifacts_ready, get_bundle, pct
+from heartrisk.app_support import artifacts_ready, chart_palette, get_bundle, pct
 from heartrisk.batch import (
     BatchValidationError,
     prepare_batch,
@@ -153,20 +153,22 @@ metric_cols[2].metric(
 )
 metric_cols[3].metric("Decision threshold", pct(threshold), border=True)
 
+palette = chart_palette()
 histogram = go.Figure(
     go.Histogram(
         x=scored["risk_probability"],
         nbinsx=40,
-        marker_color="#0F766E",
+        marker_color=palette.accent,
         hovertemplate="Probability %{x:.3f}<br>Rows %{y}<extra></extra>",
     )
 )
 histogram.add_vline(
     x=threshold,
     line_dash="dash",
-    line_color="#B91C1C",
+    line_color=palette.positive,
     annotation_text="Screening threshold",
     annotation_position="top right",
+    annotation_font_color=palette.text,
 )
 histogram.update_layout(
     height=320,
@@ -175,9 +177,11 @@ histogram.update_layout(
     yaxis_title="Rows",
     paper_bgcolor="rgba(0,0,0,0)",
     plot_bgcolor="rgba(0,0,0,0)",
-    font={"color": "#0F172A"},
+    font={"color": palette.text},
     bargap=0.04,
 )
+histogram.update_xaxes(gridcolor=palette.grid)
+histogram.update_yaxes(gridcolor=palette.grid)
 st.plotly_chart(histogram, width="stretch", config={"displayModeBar": False})
 
 band_counts = (

@@ -4,7 +4,14 @@ import pandas as pd
 import streamlit as st
 
 from heartrisk import config
-from heartrisk.app_support import artifacts_ready, ci_text, get_metrics, pct, show_figure
+from heartrisk.app_support import (
+    artifacts_ready,
+    chart_palette,
+    ci_text,
+    get_metrics,
+    pct,
+    show_figure,
+)
 
 MODEL_LABELS = {
     "logistic": "Logistic regression",
@@ -37,6 +44,7 @@ early_test = early["test"]
 full_test = full["test"]
 pr_delta = metrics["early_vs_full"]["pr_auc"]
 roc_delta = metrics["early_vs_full"]["roc_auc"]
+palette = chart_palette()
 
 overview = st.columns(4, gap="medium")
 overview[0].metric(
@@ -175,7 +183,7 @@ with explain_tab:
     st.bar_chart(
         chart_data,
         horizontal=True,
-        color="#0F766E",
+        color=palette.accent,
         height=max(320, 30 * len(chart_data)),
         x_label="Mean absolute SHAP value",
         y_label="",
@@ -281,7 +289,7 @@ with fairness_tab:
     st.bar_chart(
         chart,
         horizontal=True,
-        color=["#0F766E", "#94A3B8"],
+        color=[palette.accent, palette.baseline],
         height=max(320, 46 * len(chart)),
         x_label="Rate",
         y_label="",

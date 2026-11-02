@@ -5,7 +5,13 @@ import plotly.graph_objects as go
 import streamlit as st
 
 from heartrisk import config
-from heartrisk.app_support import artifacts_ready, get_bundle, pct, signed_pct_points
+from heartrisk.app_support import (
+    artifacts_ready,
+    chart_palette,
+    get_bundle,
+    pct,
+    signed_pct_points,
+)
 from heartrisk.explain import find_lower_risk_profile, local_explanation, what_if
 from heartrisk.predict import default_patient, example_patients, predict_patient
 from heartrisk.report import build_patient_report
@@ -99,6 +105,7 @@ def _build_patient(bundle: dict) -> dict:
 
 
 def _gauge(probability: float, threshold: float) -> go.Figure:
+    palette = chart_palette()
     low_cut = threshold * 0.5
     figure = go.Figure(
         go.Indicator(
@@ -107,16 +114,16 @@ def _gauge(probability: float, threshold: float) -> go.Figure:
             number={"suffix": "%", "font": {"size": 42}},
             gauge={
                 "axis": {"range": [0, 100], "ticksuffix": "%", "tickfont": {"size": 11}},
-                "bar": {"color": "#0F766E", "thickness": 0.32},
-                "bgcolor": "white",
+                "bar": {"color": palette.accent, "thickness": 0.32},
+                "bgcolor": palette.gauge_bg,
                 "borderwidth": 0,
                 "steps": [
-                    {"range": [0, low_cut * 100], "color": "#D1FAE5"},
-                    {"range": [low_cut * 100, threshold * 100], "color": "#FEF3C7"},
-                    {"range": [threshold * 100, 100], "color": "#FEE2E2"},
+                    {"range": [0, low_cut * 100], "color": palette.band_low},
+                    {"range": [low_cut * 100, threshold * 100], "color": palette.band_moderate},
+                    {"range": [threshold * 100, 100], "color": palette.band_high},
                 ],
                 "threshold": {
-                    "line": {"color": "#111827", "width": 3},
+                    "line": {"color": palette.threshold, "width": 3},
                     "thickness": 0.8,
                     "value": threshold * 100,
                 },
@@ -127,7 +134,7 @@ def _gauge(probability: float, threshold: float) -> go.Figure:
         height=280,
         margin={"l": 24, "r": 24, "t": 24, "b": 8},
         paper_bgcolor="rgba(0,0,0,0)",
-        font={"color": "#0F172A"},
+        font={"color": palette.text},
     )
     return figure
 
@@ -211,10 +218,11 @@ def _render_result(bundle: dict, result: dict, explanation: dict, patient: dict)
         "Sex, race, and diabetes indicators are grouped for readability."
     )
 
+    palette = chart_palette()
     contributions = explanation["contributions"][:10][::-1]
     labels = [f"{item['label']} ({item['value']})" for item in contributions]
     values = [item["shap"] for item in contributions]
-    colors = ["#B91C1C" if value > 0 else "#0F766E" for value in values]
+    colors = [palette.positive if value > 0 else palette.negative for value in values]
     figure = go.Figure(
         go.Bar(
             x=values,
@@ -235,9 +243,14 @@ def _render_result(bundle: dict, result: dict, explanation: dict, patient: dict)
         showlegend=False,
         paper_bgcolor="rgba(0,0,0,0)",
         plot_bgcolor="rgba(0,0,0,0)",
-        font={"color": "#0F172A"},
+        font={"color": palette.text},
     )
-    figure.update_xaxes(zeroline=True, zerolinecolor="#94A3B8", zerolinewidth=1)
+    figure.update_xaxes(
+        zeroline=True,
+        zerolinecolor=palette.baseline,
+        zerolinewidth=1,
+        gridcolor=palette.grid,
+    )
     st.plotly_chart(figure, width="stretch", config={"displayModeBar": False})
     st.caption(
         f"Baseline raw output: {explanation['base_value']:+.3f} log-odds. "
@@ -397,6 +410,7 @@ def _render_what_if(bundle: dict, result: dict, patient: dict) -> None:
         )
         movers = pd.DataFrame(comparison["movers"])
         if not movers.empty:
+            palette = chart_palette()
             movers = movers.sort_values("delta")
             figure = go.Figure(
                 go.Bar(
@@ -404,7 +418,7 @@ def _render_what_if(bundle: dict, result: dict, patient: dict) -> None:
                     y=movers["label"],
                     orientation="h",
                     marker_color=[
-                        "#B91C1C" if value > 0 else "#0F766E"
+                        palette.positive if value > 0 else palette.negative
                         for value in movers["delta"]
                     ],
                     hovertemplate="%{y}<br>Change %{x:+.3f}<extra></extra>",
@@ -418,9 +432,14 @@ def _render_what_if(bundle: dict, result: dict, patient: dict) -> None:
                 showlegend=False,
                 paper_bgcolor="rgba(0,0,0,0)",
                 plot_bgcolor="rgba(0,0,0,0)",
-                font={"color": "#0F172A"},
+                font={"color": palette.text},
             )
-            figure.update_xaxes(zeroline=True, zerolinecolor="#94A3B8", zerolinewidth=1)
+            figure.update_xaxes(
+                zeroline=True,
+                zerolinecolor=palette.baseline,
+                zerolinewidth=1,
+                gridcolor=palette.grid,
+            )
             st.plotly_chart(figure, width="stretch", config={"displayModeBar": False})
             st.caption(
                 "Movers include interaction effects, so factors other than the edited one can shift."
