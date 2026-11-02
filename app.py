@@ -1,5 +1,7 @@
 from __future__ import annotations
 
+from pathlib import Path
+
 import streamlit as st
 
 st.set_page_config(
@@ -8,25 +10,27 @@ st.set_page_config(
     layout="wide",
 )
 
+PAGES_DIR = Path(__file__).resolve().parent / "app_pages"
+
 pages = [
     st.Page(
-        "app_pages/risk.py",
+        PAGES_DIR / "risk.py",
         title="Risk assessment",
         icon=":material/monitor_heart:",
         default=True,
     ),
     st.Page(
-        "app_pages/batch.py",
+        PAGES_DIR / "batch.py",
         title="Batch scoring",
         icon=":material/table_view:",
     ),
     st.Page(
-        "app_pages/insights.py",
+        PAGES_DIR / "insights.py",
         title="Model insights",
         icon=":material/insights:",
     ),
     st.Page(
-        "app_pages/about.py",
+        PAGES_DIR / "about.py",
         title="About & methods",
         icon=":material/info:",
     ),
