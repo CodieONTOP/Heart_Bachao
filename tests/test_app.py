@@ -69,4 +69,3 @@ def test_batch_page_loads() -> None:
     assert not app.exception
     assert [title.value for title in app.title] == ["Batch scoring"]
     assert any(uploader.label == "Upload respondent CSV" for uploader in app.file_uploader)
-
