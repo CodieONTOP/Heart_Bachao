@@ -25,7 +25,7 @@ jobs:
       - name: Lint
         run: ruff check .
       - name: Test
-        run: pytest
+        run: python -m pytest
 
   docker-build:
     runs-on: ubuntu-latest
